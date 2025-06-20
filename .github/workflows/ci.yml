@@ -1,9 +1,25 @@
-name: Build and Test
+name: Build, Test and Deploy
 
 on: [push, pull_request]
 
 jobs:
-  fullstack:
+  backend:
+    name: Backend - Install dependencies & unit test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - name: Run Back-End Tests
+        working-directory: back
+        run: mvn clean install
+
+  frontend:
+    name: Frontend - Install dependencies & unit test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -12,20 +28,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Install front-end dependencies
+      - name: Install dependencies
         working-directory: front
-        run: npm install
+        run: npm ci
       - name: Run Front-End Tests
         working-directory: front
         run: npm run test:ci
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-      - name: Install back-end dependencies
-        working-directory: back
-        run: mvn clean install -DskipTests
-      - name: Run Back-End Tests
-        working-directory: back
-        run: mvn test
+
+  docker-deploy:
+    name: Docker Deploy
+    runs-on: ubuntu-latest
+    needs: [backend, frontend]
+    steps:
+      - name: Placeholder for future deployment
+        run: echo "Deployment will happen here..."
