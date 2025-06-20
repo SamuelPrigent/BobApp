@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   backend:
-    name: Backend - Install dependencies & unit test
+    name: Backend - test
     runs-on: ubuntu-latest
     permissions:
       checks: write
@@ -29,7 +29,7 @@ jobs:
           reporter: java-junit
 
   frontend:
-    name: Frontend - Install dependencies & unit test
+    name: Frontend - test
     runs-on: ubuntu-latest
     permissions:
       checks: write
@@ -53,7 +53,7 @@ jobs:
         with:
           name: Frontend Tests (JUnit)
           path: front/test-results/junit.xml
-          reporter: jest-junit
+          reporter: java-junit
 
   docker-deploy:
     name: Docker Deploy
