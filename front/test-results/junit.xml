@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<testsuite name="Chrome Headless 137.0.0.0 (Mac OS 10.15.7)" package="" timestamp="2025-06-20T15:30:37" id="0" hostname="MacBook-Air-de-Samuel.local" tests="2" errors="0" failures="0" time="0.044">
+<testsuite name="Chrome Headless 137.0.0.0 (Mac OS 10.15.7)" package="" timestamp="2025-06-20T15:59:50" id="0" hostname="MacBook-Air-de-Samuel.local" tests="2" errors="0" failures="0" time="0.032">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/137.0.0.0 Safari/537.36"/>
   </properties>
-  <testcase name="JokesService should be created" time="0.01" classname="JokesService"/>
-  <testcase name="AppComponent should create the app" time="0.034" classname="AppComponent"/>
+  <testcase name="AppComponent should create the app" time="0.031" classname="AppComponent"/>
+  <testcase name="JokesService should be created" time="0.001" classname="JokesService"/>
   <system-out>
     <![CDATA[Chrome Headless 137.0.0.0 (Mac OS 10.15.7) ERROR: 'NG0304: 'mat-toolbar' is not a known element (used in the 'AppComponent' component template):
 1. If 'mat-toolbar' is an Angular component, then verify that it is a part of an @NgModule where this component is declared.
