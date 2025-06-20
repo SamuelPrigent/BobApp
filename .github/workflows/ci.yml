@@ -32,8 +32,6 @@ jobs:
         with:
           name: backend-artifacts
           path: back/target
-      - name: Debug - List backend workspace
-        run: ls -R back
 
   frontend-test:
     name: Frontend unit test
@@ -90,8 +88,6 @@ jobs:
         with:
           name: frontend-artifacts
           path: front
-      - name: Debug - List sonar workspace
-        run: ls -R
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
