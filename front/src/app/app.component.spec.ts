@@ -2,15 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { JokesService } from './services/jokes.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatCardModule } from '@angular/material/card';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDividerModule } from '@angular/material/divider';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [HttpClientTestingModule, MatToolbarModule, MatCardModule, MatDividerModule],
+      imports: [HttpClientTestingModule],
       providers: [JokesService],
     }).compileComponents();
   });
