@@ -17,6 +17,13 @@ jobs:
       - name: Run Back-End Tests
         working-directory: back
         run: mvn clean install
+      - name: Report Back-End Tests
+        uses: phoenix-actions/test-reporting@v15
+        if: always()
+        with:
+          name: Backend Tests (JUnit)
+          path: back/target/surefire-reports/*.xml
+          reporter: java-junit
 
   frontend:
     name: Frontend - Install dependencies & unit test
@@ -34,6 +41,13 @@ jobs:
       - name: Run Front-End Tests
         working-directory: front
         run: npm run test:ci
+      - name: Report Front-End Tests
+        uses: phoenix-actions/test-reporting@v15
+        if: always()
+        with:
+          name: Frontend Tests (JUnit)
+          path: front/test-results/junit.xml
+          reporter: jest-junit
 
   docker-deploy:
     name: Docker Deploy
