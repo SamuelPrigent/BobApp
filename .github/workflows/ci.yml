@@ -32,6 +32,8 @@ jobs:
         with:
           name: backend-artifacts
           path: back/target
+      - name: Debug - List backend workspace
+        run: ls -R back
 
   frontend-test:
     name: Frontend unit test
@@ -52,6 +54,8 @@ jobs:
       - name: Run Front-End Tests
         working-directory: front
         run: npm run test:ci
+      - name: Debug - List frontend workspace
+        run: ls -R front
       - name: Report Front-End Tests
         uses: phoenix-actions/test-reporting@v15
         if: always()
@@ -85,6 +89,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: frontend-artifacts
+      - name: Debug - List sonar workspace
+        run: ls -R
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
