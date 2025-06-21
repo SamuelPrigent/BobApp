@@ -1,4 +1,4 @@
-name: Build, Test and Deploy
+name: Test, Analysis, Docker Hub
 
 on: [push, pull_request]
 
@@ -94,8 +94,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  docker-deploy:
-    name: Docker Deploy
+  docker-publish:
+    name: Publish to Docker Hub
     runs-on: ubuntu-latest
     needs: [backend-test, frontend-test, sonar-analysis]
     steps:
@@ -113,11 +113,11 @@ jobs:
         with:
           context: ./back
           push: true
-          tags: samuelprigent/bobapp-back:latest,samuelprigent/bobapp-back:${{ github.sha }}
+          tags: samuelprigent/bobapp:backend-latest,samuelprigent/bobapp:backend-${{ github.sha }}
 
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
           context: ./front
           push: true
-          tags: samuelprigent/bobapp-front:latest,samuelprigent/bobapp-front:${{ github.sha }}
+          tags: samuelprigent/bobapp:frontend-latest,samuelprigent/bobapp:frontend-${{ github.sha }}
