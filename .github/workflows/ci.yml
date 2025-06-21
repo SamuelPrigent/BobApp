@@ -121,3 +121,13 @@ jobs:
           context: ./front
           push: true
           tags: samuelprigent/bobapp:frontend-latest,samuelprigent/bobapp:frontend-${{ github.sha }}
+
+      - name: Clean up old Docker Hub tags
+        uses: peter-evans/dockerhub-tag-cleanup@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: samuelprigent/bobapp
+          tag_pattern: '^(backend|frontend)-[0-9a-f]{7,}$'
+          keep_latest: 1
+          dry_run: false
