@@ -1,4 +1,4 @@
-name: Test, Analysis, Docker Hub
+name: Pipeline
 
 on:
   push:
